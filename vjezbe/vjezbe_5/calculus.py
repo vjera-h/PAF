@@ -4,7 +4,7 @@ def deriv_u_tocki(f, x, k = 0.01):
     return(f(x + k) - f(k))/k
 
 def deriv_u_rasponu(f, donja, gornja, k = 0.01):
-    x_vrij = np.linespace(donja, gornja, 1000)
+    x_vrij = np.linspace(donja, gornja, 1000)
     deriv = []
     for x in x_vrij:
         deriv.append(deriv_u_tocki(f, x, k))
