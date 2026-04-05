@@ -11,7 +11,7 @@ def je_li_float(koord):
     except ValueError:
         return False
 
-while True:
+while True: #petlja koja ispisuje prve dvije koordinate
     x = input('Upisite prvu x koordinatu: ')
     y = input('Upisite prvu y koordinatu: ')
     if je_li_float(x)==True and je_li_float(y)==True:
@@ -22,7 +22,7 @@ while True:
     else:
         print('Potrebno je upisati broj')
 
-while True:
+while True: #petlja koja ispisuje druge dvije koordinate
     x1 = input('Upisite drugu x koordinatu: ')
     y1 = input('Upisite drugu y koordinatu: ')
     if je_li_float(x1)==True and je_li_float(y1)==True:
@@ -34,8 +34,9 @@ while True:
         print('Potrebno je upisati broj')
 
 a = (y1 -y)/(x1 - x)
-b = y - a*x
+b = y - a*x #jednadžba pravca kroz dvije točke
 print(f'Jednadzba pravca je: y = {a}x + {b}')
+
 
 
 #Napišite funkciju koja kao ulazne parametre prima (x, y) koordinate za dvije točke. 
@@ -71,9 +72,13 @@ def jednadžba_i_graf_pravca(x, y, x1, y1):
     plt.legend()
     plt.xlabel('x')
     plt.ylabel('y')
-    plt.show() 
+    graf = input('Zelite li prikazati graf(da)? Također ga možete i spremiti: ')
+    if graf.lower() == 'da':
+        plt.show()
+    else:
+        ime = input('Unesite ime pod kojim zelite spremiti graf: ')
+        plt.savefig(f'{ime}.pdf')
 
 jednadžba_i_graf_pravca(5, -4, -6, 9)
 
-
-
+#zakašnjenje s zadatkom zbog 
