@@ -81,4 +81,4 @@ def jednadžba_i_graf_pravca(x, y, x1, y1):
 
 jednadžba_i_graf_pravca(5, -4, -6, 9)
 
-#zakašnjenje s zadatkom zbog 
+#zakašnjenje s zadatkom zato što prvi put nije upisalo dio 5. zadatka gdje prikazuje/sprema graf
