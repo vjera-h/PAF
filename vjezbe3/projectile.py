@@ -1,7 +1,5 @@
 # Napišite kod koji sadrži klasu Projectile koja ima implementirane metode za 
 # simuliranje kosog hitca u dvije dimenzije s otporom zraka. 
-# Testirajte za koji korak ∆t Euler-ova metoda daje dovoljno precizno numeričko
-# rješenje koje na x − y grafu nema naznake ne-fizikalnog gibanja.
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -9,9 +7,9 @@ import matplotlib.pyplot as plt
 
 class Projectile:
     def __init__(self, x0, y0, v0, theta, m, A, C = 0.35):
-        """Initializacija koda, sadrži atribute početne brzine, kuta otklona i koordinate početnog položaja"""
+        """Inicializacija koda, sadrži atribute početne brzine, kuta otklona i koordinate početnog položaja"""
         self.v0 = v0 #m/s pocetna brzina
-        #v0 je vrijednost u Particle projektu, self.v0 je polje koje pohranjuje vrijednost
+        #v0 je vrijednost u Projectile, self.v0 je polje koje pohranjuje vrijednost
         self.theta = np.radians(theta) #pretvara iznos theta u radijane
         self.x0 = x0
         self.y0 = y0
@@ -49,7 +47,7 @@ class Projectile:
         self.vy = self.v0 * np.sin(self.theta)
         self.t = [0] #vrijeme
 
-    def  __move_Euler(self, dt):
+    def  _move_Euler(self, dt):
         """Pomiče česticu za korak ∆t"""
         # Ukupna brzina v
         v = np.sqrt(self.vx**2 + self.vy**2)
@@ -70,11 +68,13 @@ class Projectile:
         self.yE.append(self.yE[-1] + self.vy * dt) #zadnja poznata velicina je x0
 
         self.t.append(self.t[-1] + dt)
+        
+        return self.xE, self.yE
 
     #Klasi Projectile dodajte mogućnost rješavanja problema uz pomoć Runge-Kutta metode 4. reda.
     
-    def __derivacije(self, vx, vy):
-        """Pomoćna funkcija koja vraća derivacije (vx, vy, ax, ay)"""
+    def __pomocna(self, vx, vy):
+        """Pomoćna funkcija koja vraća (vx, vy, ax, ay)"""
         v = np.sqrt(vx**2 + vy**2)
         ax = - (self.k * v * vx) / self.m
         ay = - self.g - (self.k * v * vy) / self.m
@@ -87,16 +87,16 @@ class Projectile:
         tren_vx, tren_vy = self.vx, self.vy
 
         #k1 - početak intervala
-        k1_dx, k1_dy, k1_dvx, k1_dvy = self.__derivacije(tren_vx, tren_vy)
+        k1_dx, k1_dy, k1_dvx, k1_dvy = self.__pomocna(tren_vx, tren_vy)
 
         #k2 - sredina intervala koristeći k1
-        k2_dx, k2_dy, k2_dvx, k2_dvy = self.__derivacije(tren_vx + k1_dvx * dt/2, tren_vy + k1_dvy * dt/2)
+        k2_dx, k2_dy, k2_dvx, k2_dvy = self.__pomocna(tren_vx + k1_dvx * dt/2, tren_vy + k1_dvy * dt/2)
 
         #k3 - sredina intervala koristeći k2
-        k3_dx, k3_dy, k3_dvx, k3_dvy = self.__derivacije(tren_vx + k2_dvx * dt/2, tren_vy + k2_dvy * dt/2)
+        k3_dx, k3_dy, k3_dvx, k3_dvy = self.__pomocna(tren_vx + k2_dvx * dt/2, tren_vy + k2_dvy * dt/2)
 
         #k4 - kraj intervala koristeći k3
-        k4_dx, k4_dy, k4_dvx, k4_dvy = self.__derivacije(tren_vx + k3_dvx * dt, tren_vy + k3_dvy * dt)
+        k4_dx, k4_dy, k4_dvx, k4_dvy = self.__pomocna(tren_vx + k3_dvx * dt, tren_vy + k3_dvy * dt)
 
         #Ažuriranje pozicija (x, y) koristeći ponderirani prosjek nagiba brzina
         novo_x = tren_x + (dt / 6.0) * (k1_dx + 2*k2_dx + 2*k3_dx + k4_dx)
@@ -113,7 +113,7 @@ class Projectile:
     def plot_trajectory(self, dt):
         self.reset()
         while self.yE[-1]>=0:
-            self.__move_Euler(dt)
+            self._move_Euler(dt)
         #podatci se spremaju u liste kako bi se ocuvali nakon resetiranja
         xe_plot, ye_plot = list(self.xE), list(self.yE)
 
@@ -132,7 +132,27 @@ class Projectile:
         plt.grid()
         plt.show()
 
-# Usporedite putanje projektila preko Euler-ove i Runge-Kutta metode za ∆t = 0.01.
+# Testirajte za koji korak ∆t Euler-ova metoda daje dovoljno precizno numeričko
+# rješenje koje na x − y grafu nema naznake ne-fizikalnog gibanja.
 
 metode = Projectile(0, 0, 10, 45, 1, A = 0.1)
+
+dt_korak = [0.001, 0.01, 0.05, 0.1, 0.15, 0.20, 0.25, 0.5, 0.75, 1]
+for dt in dt_korak:
+    metode.reset()
+    while metode.yE[-1]>=0:
+        metode._move_Euler(dt)
+    plt.plot(metode.xE, metode.yE, label=f'dt = {dt} s')
+
+plt.title('Utjecaj vremenskog koraka ∆t na preciznost Eulerove metode', fontsize = 9)
+plt.xlabel('x [m]')
+plt.ylabel('y [m]')
+plt.axhline(0, color='black', lw=0.5)
+plt.axvline(0, color='black', lw=0.5)
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+# Usporedite putanje projektila preko Euler-ove i Runge-Kutta metode za ∆t = 0.01.
 metode.plot_trajectory(0.01)

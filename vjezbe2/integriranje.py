@@ -27,7 +27,7 @@ for n in n_broj:
     trapezna.append(calculus.trapezna_aproksimacija(funkcija, a, b, n))
 
 #analiticko - trapezna
-suma_ana = calculus.trapezna_aproksimacija(funkcija, a, b, 10000)
+suma_ana = 19/3
 
 
 plt.scatter(n_broj, lijeva, color = 'blue', linewidth = 5, label = 'Pravokutna lijeva aproksimacija')

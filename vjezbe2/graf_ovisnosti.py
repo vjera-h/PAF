@@ -16,7 +16,7 @@ g = 9.81 #m/s^2
 #analitičko rješenje
 R_ana = (v0**2 * np.sin(2 * theta_r)) / g #R = v0 * sin(2theta)/g
 
-dt_korak = np.linspace(0.001,0.1, 10) #počinje sa 0.001, završava sa 0.1, 10 vrijednosti
+dt_korak = np.linspace(0.001,0.1, 1000) #počinje sa 0.001, završava sa 0.1, 10 vrijednosti
 
 #numeričko rješenje i relativna pogreška
 relativna = []

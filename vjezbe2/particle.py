@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 class Particle:
     def __init__(self, v0, theta, x0, y0): 
-        """Initializacija koda, sadrži atribute početne brzine, kuta otklona i koordinate početnog položaja"""
+        """Inicializacija koda, sadrži atribute početne brzine, kuta otklona i koordinate početnog položaja"""
     #__init__ je initialization, self je prvi argument u metodi- novi objekt
         self.v0 = v0 #m/s
         #v0 je vrijednost u Particle projektu, self.v0 je polje koje pohranjuje vrijednost
