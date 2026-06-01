@@ -44,7 +44,7 @@ def torzija(M, phi):
     plt.scatter(phi, M, label = 'mjerenja', color = 'purple')
     plt.plot(x_pravac, y_pravac, label = 'linearna regresija', color = 'green')
     plt.ylabel('M [Nm]')
-    plt.xlabel('$phi$ [rad]')
+    plt.xlabel('$\phi$ [rad]')
     plt.legend()
     plt.grid(True)
     plt.show()

@@ -58,7 +58,6 @@ def graf_gibanja(korak, dt, B, E, v0, r0):
     elektron_array = np.array(elektron) #kako bi sve s cime radimo plot bia array   
     pozitron_array = np.array(pozitron)
 
-    fig = plt.figure()
     ax = plt.axes(projection='3d')
     ax.plot3D(elektron_array[:, 0], elektron_array[:, 1], elektron_array[:, 2], label = 'Elektron')
     ax.plot3D(pozitron_array[:, 0], pozitron_array[:, 1], pozitron_array[:, 2], label = 'Pozitron')
