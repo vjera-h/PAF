@@ -23,7 +23,7 @@ def operacije(N):
         broj += 1/3
     for i in range(0, N):
         broj -= 1/3
-    rezultat = print(f'Za N = {N}:\nOvo je rezultat {broj}')
+    print(f'Za N = {N}:\nOvo je rezultat {broj}')
 
 operacije(N1)
 operacije(N2)
