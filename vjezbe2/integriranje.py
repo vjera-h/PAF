@@ -26,7 +26,7 @@ for n in n_broj:
     desna.append(d)
     trapezna.append(calculus.trapezna_aproksimacija(funkcija, a, b, n))
 
-#analiticko - trapezna
+#analiticko
 suma_ana = 19/3
 
 
