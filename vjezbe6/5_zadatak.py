@@ -72,3 +72,4 @@ print(f'Relativna razlika za veliki n: {velika_relativna_razlika}')
 
 print(f'Devijacija s python np.std() je:\nza mali n {np.std(malo_n)}\nza veliki n {np.std(veliko_n)}')
 print(f'Devijacija s devijecijom n je:\nza mali n {mala_devijacija_n}\nza veliki n {velika_devijacija_n}')
+#pythonov np.std() se može koristiti kada nam treba n devijacija
