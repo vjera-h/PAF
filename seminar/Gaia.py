@@ -146,3 +146,5 @@ def nocni_broj(mag, lat, dec, ra, LST_dan, eye_mag, uvjet_dec):
     return broj
 
 print(nocni_broj(mag, lat, dec, ra, LST_dan, eye_mag[3], uvjet_dec), trenutni_broj(mag, lat, dec, ra, LST, eye_mag[3], uvjet_dec), godisnji_broj(mag, eye_mag[3], uvjet_dec))
+
+#zbog uvjet_dec stalno vraca istu vrijednost
