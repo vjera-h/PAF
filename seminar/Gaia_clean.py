@@ -17,7 +17,6 @@ lat_deg = 43.512140407590124 #°
 lat = np.radians(lat_deg)
 min_dec = np.radians(lat_deg - 90) #°
 
-
 def godisnji_broj(mag, eye_mag, dec, min_dec):
     uvjet_dec = dec > min_dec
     uvjet_mag = mag < eye_mag
@@ -26,7 +25,6 @@ def godisnji_broj(mag, eye_mag, dec, min_dec):
     return broj_godisnji
 
 LST = [['25. lipnja 2024', 290.0952],['15. ozujka 2024', 189.5590], ['23. rujna 2023', 17.9948], ['1. prosinca 2020', 86.7823]] #° (ponoc)
-
 
 def trenutni_broj(mag, lat, dec, ra, min_dec, LST, eye_mag): 
     filter_mag = mag < eye_mag  
