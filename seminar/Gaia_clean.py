@@ -65,7 +65,7 @@ def nocni_broj(mag, lat, dec, ra, min_dec, LST_dan, eye_mag):
 
     sin_a = np.sin(lat) * np.sin(dec_stupac) + np.cos(lat) * np.cos(dec_stupac) * np.cos(lst_noc_rad - ra_stupac)
 
-    uvjet_ra = np.any(sin_a >= 0, axis = 1) 
+    uvjet_ra = np.any(sin_a >= 0, axis = 1)
     uvjet_dec = fil_dec > min_dec
 
     broj = np.sum(uvjet_ra & uvjet_dec)
